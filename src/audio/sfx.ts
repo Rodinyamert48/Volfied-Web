@@ -52,4 +52,18 @@ export class Sfx {
   start(): void {
     this.blip(440, 0.1, 'square', 0.1, 440)
   }
+  shoot(): void {
+    this.blip(1200, 0.07, 'square', 0.06, -500)
+  }
+  hit(): void {
+    this.blip(220, 0.12, 'sawtooth', 0.1, -120)
+  }
+  explode(): void {
+    this.blip(150, 0.35, 'sawtooth', 0.14, -100)
+    setTimeout(() => this.blip(90, 0.3, 'square', 0.1, -40), 80)
+  }
+  bossWarn(): void {
+    this.blip(140, 0.4, 'sawtooth', 0.14, 60)
+    setTimeout(() => this.blip(140, 0.4, 'sawtooth', 0.14, 60), 300)
+  }
 }

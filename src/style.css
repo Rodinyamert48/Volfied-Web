@@ -74,6 +74,70 @@ html, body {
   padding: 12px;
 }
 
+.banner {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(2, 4, 15, 0.9);
+  border: 2px solid var(--yellow);
+  color: var(--yellow);
+  font-size: 9px;
+  line-height: 1.8;
+  padding: 10px 14px;
+  border-radius: 8px;
+  z-index: 6;
+  max-width: 90%;
+  text-align: center;
+}
+.banner[hidden] { display: none; }
+
+.bossbar {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(420px, 80%);
+  z-index: 6;
+  text-align: center;
+}
+.bossbar[hidden] { display: none; }
+.bossbar label {
+  font-size: 8px;
+  color: var(--magenta);
+  text-shadow: 1px 1px 0 #000;
+}
+.bossbar .track {
+  margin-top: 4px;
+  height: 10px;
+  background: #1a0210;
+  border: 2px solid var(--magenta);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.bossbar #boss-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--magenta), var(--red));
+}
+
+.stage-line {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 8px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.boss-tag {
+  color: #06121a;
+  background: var(--magenta);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
 canvas#game {
   width: 100%;
   height: auto;

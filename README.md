@@ -1,8 +1,9 @@
 # Volfied-Web
 
 Pixel-art Volfied (Qix clone) — Vite + TypeScript + Canvas.
+**15 stage • 4 düşman AI + 3 boss • ateş etme • harita adaları.**
 
-Duvar üzerinde ilerle, boşluğa dalıp iz bırak, duvara dönerek alanı kapat. İzi düşman keserse yanarsın.
+Duvar üzerinde ilerle, boşluğa dalıp iz bırak, duvara dönerek alanı kapat. Düşmanlar artık saldırıyor: kovan, ateş eden, izini kesen türler var. Geminde top var — vur ya da hapset.
 
 ## Oyna
 
@@ -14,8 +15,22 @@ Duvar üzerinde ilerle, boşluğa dalıp iz bırak, duvara dönerek alanı kapat
 
 - Oklar / WASD: hareket
 - SPACE (basılı): hızlı kesim (2x puan)
+- J / X / K veya TIK: ateş (en yakın düşmana kilitlenir)
 - P: duraklat, M: ses, ENTER: başlat
-- Mobil: canvas üzerinde kaydır
+- Mobil: kaydır = hareket, dokun = ateş
+
+## Düşman AI
+
+- DRIFTER (kırmızı, 1 can, 200p): klasik serseri mayın, seker
+- HUNTER (mor, 2 can, 400p): seni kovalar
+- GUNNER (yeşil, 2 can, 600p): mesafeyi korur, nişan alıp ateş eder
+- WEAVER (sarı, 1 can, 500p): TRAIL'ini koklar, izi kesmeye gelir
+- Duvar devriyesi (turuncu, 2 can, 300p): duvar üstünde gezer, ateş eder
+- BOSS (5/10/15): KISKAÇ, TEK GÖZ, KARA GIRDAP — halka mermi + charge, hapsedersen 12 hasar, vurursan canı azalır. Boss'u öldürmek stage'i bitirir (+5000).
+
+## Stage'ler (15)
+
+1 Yeşil Başlangıç → 2 İkiz Gölet → 3 Çapraz Ateş → 4 Nişancı Sokağı → **5 BOSS Yengeç** → 6 Buz Mağarası → 7 Kum Tuzağı → 8 Labirent → 9 Fırtına Öncesi → **10 BOSS Göz** → 11 Volkan → 12 Gece Avcısı → 13 Demir Orman → 14 Son Eşik → **15 FİNAL Kara Girdap**.
 
 ## Kurallar
 

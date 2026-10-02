@@ -138,3 +138,15 @@ export function randomEmptyCell(g: Uint8Array, margin = 2): { cx: number; cy: nu
   }
   return null
 }
+
+/** Fill interior rects as WALL islands (map variety). Clamped to interior. */
+export function carveObstacles(g: Uint8Array, rects: Array<{ x: number; y: number; w: number; h: number }>): void {
+  for (const r of rects) {
+    for (let y = r.y; y < r.y + r.h; y++) {
+      for (let x = r.x; x < r.x + r.w; x++) {
+        if (x < 1 || y < 1 || x >= COLS - 1 || y >= ROWS - 1) continue
+        g[idx(x, y)] = WALL
+      }
+    }
+  }
+}
