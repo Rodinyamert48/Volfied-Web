@@ -1,0 +1,176 @@
+:root {
+  --bg: #050818;
+  --panel: #0a1030;
+  --cyan: #00e5ff;
+  --magenta: #ff2fb3;
+  --yellow: #ffe14d;
+  --green: #3dff8e;
+  --red: #ff4d5e;
+  --text: #d7e6ff;
+  --muted: #7b8fc4;
+  --font-pixel: 'Press Start 2P', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(1200px 700px at 50% -10%, #131a4d 0%, var(--bg) 60%) fixed;
+  color: var(--text);
+  font-family: var(--font-pixel);
+  min-height: 100vh;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.cabinet {
+  width: min(960px, 100%);
+  background: linear-gradient(180deg, #0d1440, #070b24);
+  border: 3px solid #1e2a7a;
+  border-radius: 14px;
+  box-shadow: 0 0 0 3px #050818, 0 0 40px rgba(0, 229, 255, 0.15), 0 20px 60px rgba(0,0,0,0.6);
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 2px solid #1e2a7a;
+  background: rgba(0, 229, 255, 0.04);
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--cyan);
+  text-shadow: 2px 2px 0 #003a44, 0 0 12px rgba(0,229,255,0.6);
+}
+.logo span { color: var(--magenta); text-shadow: 2px 2px 0 #4d0029, 0 0 12px rgba(255,47,179,0.6); }
+
+.hud {
+  display: flex;
+  gap: 14px;
+  font-size: 10px;
+  color: var(--text);
+  flex-wrap: wrap;
+}
+.hud b { color: var(--yellow); font-weight: normal; }
+.hud .lives { color: var(--green); }
+
+.stage-wrap {
+  position: relative;
+  background: #02040f;
+  padding: 12px;
+}
+
+canvas#game {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background: #02040f;
+  border: 2px solid #1e2a7a;
+  border-radius: 8px;
+  touch-action: none;
+}
+
+/* CRT scanline overlay */
+.stage-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+  border-radius: 8px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+.fillbar {
+  height: 12px;
+  background: #060a26;
+  border: 2px solid #1e2a7a;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 12px 0;
+}
+.fillbar > div {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+  transition: width 0.25s steps(12);
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.controls small {
+  font-size: 8px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+button.pixel {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #06121a;
+  background: var(--cyan);
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #006978, 0 6px 12px rgba(0,0,0,0.4);
+}
+button.pixel:active { transform: translateY(2px); box-shadow: 0 2px 0 #006978; }
+button.pixel.secondary { background: var(--yellow); box-shadow: 0 4px 0 #7a6200, 0 6px 12px rgba(0,0,0,0.4); }
+button.pixel.ghost { background: transparent; color: var(--text); outline: 2px solid #2a3a9a; box-shadow: none; }
+button.pixel:focus-visible { outline: 3px solid var(--magenta); outline-offset: 2px; }
+
+.overlay {
+  position: absolute;
+  inset: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 4, 15, 0.82);
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  z-index: 5;
+}
+.overlay[hidden] { display: none; }
+.overlay .card { max-width: 560px; }
+.overlay h1 { font-size: 22px; color: var(--yellow); margin: 0 0 12px; line-height: 1.6; }
+.overlay h2 { font-size: 14px; color: var(--cyan); margin: 0 0 10px; }
+.overlay p { font-size: 9px; line-height: 2; color: var(--text); }
+.overlay .keys { color: var(--muted); margin: 12px 0; }
+.overlay .row { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  .logo { font-size: 11px; }
+  .hud { font-size: 8px; gap: 8px; }
+  .overlay h1 { font-size: 15px; }
+}
